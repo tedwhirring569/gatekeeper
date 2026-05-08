@@ -27,7 +27,7 @@ identity:
   frames_per_check: 5
   min_matches_required: 2
   model_name: VGG-Face
-  reference_image_path: D:\ARPA\OpenSource\DeepFaceSecurity\v1.jpg
+  reference_image_path: null
 resource:
   action_timeout_seconds: 30
   resource_name: mission_critical_gateway

@@ -1,3 +1,5 @@
+<div align="center">
+
 # Mission-Critical Access Gatekeeper
 
 **Emotion Policy + Face Verification for High-Risk Operations**
@@ -7,11 +9,11 @@
 [![UseCase](https://img.shields.io/badge/use_case-mission_critical_access-f4d7ff?style=flat-square)](#use-cases)
 [![License](https://img.shields.io/badge/license-MIT-f8e7c9?style=flat-square)](LICENSE)
 
-Quick links: [About](#about) | [Architecture](#architecture) | [Quick Start](#quick-start) | [Notebook Demo](#notebook-demo) | [Use Cases](#use-cases) | [Why Emotion Gating Matters](#why-emotion-gating-matters) | [Security Rules](#security-rules) | [Contributing](#contributing)
-
-Docs: [Architecture](docs/architecture.md) | [Configuration](docs/configuration.md) | [Examples](docs/examples.md) | [Troubleshooting](docs/troubleshooting.md)
-
 A DeepFace-based security framework that grants access only when identity verification and emotional-risk policy checks both pass.
+
+</div>
+
+Quick links: [About](#about) | [Architecture](#architecture) | [Quick Start](#quick-start) | [Notebook Demo](#notebook-demo) | [Use Cases](#use-cases) | [Why Emotion Gating Matters](#why-emotion-gating-matters) | [Security Rules](#security-rules) | [Documentation](#documentation) | [Contributing](#contributing)
 
 ## About
 
@@ -72,9 +74,7 @@ python -m pip install -r requirements-fallback.txt
 
 ### 2) Configure runtime
 
-```powershell
-copy .env.example .env
-```
+`config.yaml` is auto-created on first run if it does not exist.
 
 ### 3) Run terminal app
 
@@ -164,6 +164,13 @@ Access is granted only when:
 All denied decisions return deterministic reason messages.
 
 If a stable emotional classification is not reached after configured batches, access is denied with guidance to retry under better camera/visibility conditions.
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Configuration](docs/configuration.md)
+- [Examples](docs/examples.md)
+- [Troubleshooting](docs/troubleshooting.md)
 
 ## Contributing
 

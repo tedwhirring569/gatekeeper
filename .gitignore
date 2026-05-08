@@ -13,6 +13,11 @@ __pycache__/
 # Runtime artifacts
 logs/
 .dfs_tmp/
+*.log
+
+# Local environment files
+.env
+.env.*
 
 # Notebook artifacts
 .ipynb_checkpoints/

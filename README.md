@@ -15,7 +15,17 @@ A DeepFace-based security framework that grants access only when identity verifi
 
 </div>
 
-Quick links: [About](#about) | [Architecture](#architecture) | [Quick Start](#quick-start) | [Notebook Demo](#notebook-demo) | [Use Cases](#use-cases) | [Why Emotion Gating Matters](#why-emotion-gating-matters) | [Security Rules](#security-rules) | [Documentation](#documentation) | [Contributing](#contributing)
+- [About](#about)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Notebook Demo](#notebook-demo)
+- [Use Cases](#use-cases)
+- [Why Emotion Gating Matters](#why-emotion-gating-matters)
+- [Security Rules](#security-rules)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+
+Designed for high-impact environments, this project helps teams prototype emotion-aware access control with deterministic decisions and auditable outcomes.
 
 ## About
 

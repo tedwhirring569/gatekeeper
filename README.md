@@ -11,6 +11,8 @@
 
 A DeepFace-based security framework that grants access only when identity verification and emotional-risk policy checks both pass.
 
+<img src="docs/images/gatekeeper-scan.png" alt="Live face scan with emotion overlay" width="820" />
+
 </div>
 
 Quick links: [About](#about) | [Architecture](#architecture) | [Quick Start](#quick-start) | [Notebook Demo](#notebook-demo) | [Use Cases](#use-cases) | [Why Emotion Gating Matters](#why-emotion-gating-matters) | [Security Rules](#security-rules) | [Documentation](#documentation) | [Contributing](#contributing)
@@ -37,17 +39,25 @@ Identity and emotion use separate thresholds:
 
 ```mermaid
 flowchart TD
-    start[AccessRequest] --> capture[CaptureFrame]
-    capture --> identity[IdentityCheck]
-    capture --> emotion[EmotionAnalyze]
-    identity --> identityPass{IdentityVerified}
-    emotion --> emotionPass{EmotionPolicyPass}
-    identityPass -- No --> denyIdentity[DenyIdentityMismatch]
-    emotionPass -- No --> denyEmotion[DenyEmotionRisk]
-    identityPass -- Yes --> gateJoin[TwoOfTwoGate]
-    emotionPass -- Yes --> gateJoin
-    gateJoin --> allow[AllowProtectedAccess]
-    allow --> audit[WriteAuditEvent]
+    start[Access request] --> camera[Open camera]
+    camera --> identity[Run identity consensus]
+    identity --> identity_ok{Identity passed}
+    identity_ok -- No --> deny_id[Deny access]
+    deny_id --> audit_deny_id[Write audit deny]
+
+    identity_ok -- Yes --> batch[Collect one emotion batch]
+    batch --> eval[Aggregate scores and evaluate policy]
+    eval --> stable{Dominant confidence meets threshold}
+    stable -- No --> more{More batches left}
+    more -- Yes --> batch
+    more -- No --> deny_timeout[Deny access timeout]
+    deny_timeout --> audit_deny_timeout[Write audit deny]
+
+    stable -- Yes --> emotion_ok{Emotion policy passed}
+    emotion_ok -- No --> deny_emotion[Deny access risk]
+    deny_emotion --> audit_deny_emotion[Write audit deny]
+    emotion_ok -- Yes --> allow[Grant access]
+    allow --> audit_allow[Write audit allow]
 ```
 
 ## Quick Start
@@ -94,6 +104,10 @@ Runtime output includes stage-level results:
 - Identity check: pass/fail details
 - Emotion check: pass/fail details
 - Final decision: 2/2 pass or deny
+
+Example terminal configuration and runtime view:
+
+![Gatekeeper terminal flow](docs/images/gatekeeper-terminal.png)
 
 ### First-run model weights
 
@@ -147,6 +161,10 @@ Biometric identity confirms who requests access.
 Emotional risk analysis helps evaluate whether the person should proceed right now.
 
 In high-impact environments, an otherwise authorized operator may pass face verification while still being in a compromised state, for example under coercion (such as being forced to authenticate) or severe distress (for example fear, panic, or aggression after a major personal conflict). This framework adds an emotional-risk gate to reduce approvals during those moments, helping protect critical infrastructure, high-value financial operations, and other irreversible systems where temporary instability can create outsized risk.
+
+Example output after a successful gated decision:
+
+![Gatekeeper success output](docs/images/gatekeeper-success.png)
 
 ## Extensibility
 

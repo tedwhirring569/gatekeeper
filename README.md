@@ -11,7 +11,7 @@
 
 A DeepFace-based security framework that grants access only when identity verification and emotional-risk policy checks both pass.
 
-<img src="docs/images/gatekeeper-scan.png" alt="Live face scan with emotion overlay" width="820" />
+<img src="docs/images/gatekeeper-scan.png?v=2" alt="Live face scan with emotion overlay" width="820" />
 
 </div>
 
@@ -38,25 +38,24 @@ Identity and emotion use separate thresholds:
 - emotion uses `emotion.threshold`.
 
 ```mermaid
-graph TD
-    A[Access request] --> B[Open camera]
-    B --> C[Run identity consensus]
-    C --> D{Identity passed}
-    D --> E[Identity failed]
-    E --> F[Deny and write audit]
-    D --> G[Identity passed]
-    G --> H[Collect emotion batch]
-    H --> I[Evaluate emotion policy]
-    I --> J{Stable confidence reached}
-    J --> K[More batches left]
-    K --> H
-    J --> L[No batches left]
-    L --> M[Deny timeout and write audit]
-    J --> N[Stable confidence reached]
-    N --> O{Emotion policy passed}
-    O --> P[Emotion risk detected]
-    P --> Q[Deny and write audit]
-    O --> R[Grant access and write audit]
+flowchart TD
+    A[Access Request] --> B[Open Camera]
+    B --> C[Identity Consensus]
+    C --> D{Identity Passed}
+    D -- No --> E[Access Denied]
+    E --> F[Write Audit]
+    D -- Yes --> G[Emotion Batch]
+    G --> H[Evaluate Emotion Policy]
+    H --> I{Stable Confidence}
+    I -- No --> J{Batches Remaining}
+    J -- Yes --> G
+    J -- No --> K[Access Denied Timeout]
+    K --> L[Write Audit]
+    I -- Yes --> M{Emotion Policy Passed}
+    M -- No --> N[Access Denied Risk]
+    N --> O[Write Audit]
+    M -- Yes --> P[Access Granted]
+    P --> Q[Write Audit]
 ```
 
 ## Quick Start

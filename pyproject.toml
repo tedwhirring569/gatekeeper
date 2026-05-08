@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mission-critical-access-gatekeeper"
+version = "0.1.0"
+description = "Mission-Critical Access Gatekeeper: face verification and emotion-risk policy gating for high-risk operations."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "ARPA Hellenic Logical Systems" },
+  { name = "rosspeili" },
+]
+dependencies = [
+  "deepface>=0.0.99",
+  "opencv-python>=4.13.0.92",
+  "numpy>=2.0.0",
+  "pydantic>=2.8.0",
+  "pyyaml>=6.0.2",
+  "rich>=14.0.0",
+  "typer>=0.12.5",
+]
+
+keywords = ["security", "deepface", "face-verification", "emotion-analysis", "access-control"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://github.com/ARPAHLS/gatekeeper"
+Repository = "https://github.com/ARPAHLS/gatekeeper"
+Issues = "https://github.com/ARPAHLS/gatekeeper/issues"
+Documentation = "https://github.com/ARPAHLS/gatekeeper/blob/main/docs/architecture.md"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.0", "pytest-asyncio>=0.24.0", "ruff>=0.6.9"]
+
+[project.scripts]
+dfs-terminal = "deepface_security_framework.ui.terminal_menu:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

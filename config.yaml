@@ -1,0 +1,33 @@
+audit_log_path: logs/security_audit.jsonl
+cooldown_seconds: 2
+emotion:
+  blocked_emotions:
+  - angry
+  - fear
+  frames_per_batch: 3
+  max_batches: 2
+  show_camera_window: true
+  smoothing_window: 3
+  supported_emotions:
+  - angry
+  - disgust
+  - fear
+  - happy
+  - sad
+  - surprise
+  - neutral
+  threshold: 0.8
+  weights:
+    angry: 1.0
+    fear: 1.0
+identity:
+  admin_faces_dir: null
+  detector_backend: opencv
+  distance_threshold: 0.9
+  frames_per_check: 5
+  min_matches_required: 2
+  model_name: VGG-Face
+  reference_image_path: D:\ARPA\OpenSource\DeepFaceSecurity\v1.jpg
+resource:
+  action_timeout_seconds: 30
+  resource_name: mission_critical_gateway

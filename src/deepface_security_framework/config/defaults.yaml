@@ -1,0 +1,24 @@
+identity:
+  reference_image_path: null
+  admin_faces_dir: null
+  model_name: "VGG-Face"
+  detector_backend: "opencv"
+  distance_threshold: 0.9
+  frames_per_check: 5
+  min_matches_required: 2
+emotion:
+  blocked_emotions: ["angry", "fear"]
+  weights:
+    angry: 1.0
+    fear: 1.0
+  threshold: 0.8
+  smoothing_window: 3
+  frames_per_batch: 3
+  max_batches: 2
+  supported_emotions: ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
+  show_camera_window: true
+resource:
+  resource_name: "mission_critical_gateway"
+  action_timeout_seconds: 30
+cooldown_seconds: 2
+audit_log_path: "logs/security_audit.jsonl"

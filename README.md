@@ -39,23 +39,25 @@ Identity and emotion use separate thresholds:
 
 ```mermaid
 flowchart TD
-    A[Access Request] --> B[Open Camera]
-    B --> C[Identity Consensus]
-    C --> D{Identity Passed}
-    D -- No --> E[Access Denied]
-    E --> F[Write Audit]
-    D -- Yes --> G[Emotion Batch]
-    G --> H[Evaluate Emotion Policy]
-    H --> I{Stable Confidence}
-    I -- No --> J{Batches Remaining}
-    J -- Yes --> G
-    J -- No --> K[Access Denied Timeout]
-    K --> L[Write Audit]
-    I -- Yes --> M{Emotion Policy Passed}
-    M -- No --> N[Access Denied Risk]
-    N --> O[Write Audit]
-    M -- Yes --> P[Access Granted]
-    P --> Q[Write Audit]
+    start[Access request] --> camera[Open camera]
+    camera --> identity[Run identity consensus]
+    identity --> identity_ok{Identity passed}
+    identity_ok -- No --> deny_id[Deny access]
+    deny_id --> audit_deny_id[Write audit deny]
+
+    identity_ok -- Yes --> batch[Collect one emotion batch]
+    batch --> eval[Aggregate scores and evaluate policy]
+    eval --> stable{Dominant confidence meets threshold}
+    stable -- No --> more{More batches left}
+    more -- Yes --> batch
+    more -- No --> deny_timeout[Deny access timeout]
+    deny_timeout --> audit_deny_timeout[Write audit deny]
+
+    stable -- Yes --> emotion_ok{Emotion policy passed}
+    emotion_ok -- No --> deny_emotion[Deny access risk]
+    deny_emotion --> audit_deny_emotion[Write audit deny]
+    emotion_ok -- Yes --> allow[Grant access]
+    allow --> audit_allow[Write audit allow]
 ```
 
 ## Quick Start

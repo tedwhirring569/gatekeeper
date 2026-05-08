@@ -40,12 +40,12 @@ flowchart TD
     start[AccessRequest] --> capture[CaptureFrame]
     capture --> identity[IdentityCheck]
     capture --> emotion[EmotionAnalyze]
-    identity --> identityPass{IdentityVerified?}
-    emotion --> emotionPass{EmotionPolicyPass?}
-    identityPass -->|"No"| denyIdentity[DenyWithReasonIdentityMismatch]
-    emotionPass -->|"No"| denyEmotion[DenyWithReasonEmotionRisk]
-    identityPass -->|"Yes"| gateJoin[TwoOfTwoGate]
-    emotionPass -->|"Yes"| gateJoin
+    identity --> identityPass{IdentityVerified}
+    emotion --> emotionPass{EmotionPolicyPass}
+    identityPass -- No --> denyIdentity[DenyIdentityMismatch]
+    emotionPass -- No --> denyEmotion[DenyEmotionRisk]
+    identityPass -- Yes --> gateJoin[TwoOfTwoGate]
+    emotionPass -- Yes --> gateJoin
     gateJoin --> allow[AllowProtectedAccess]
     allow --> audit[WriteAuditEvent]
 ```
@@ -175,4 +175,4 @@ If a stable emotional classification is not reached after configured batches, ac
 ## Contributing
 
 Contributions are welcome for policy modules, biometric extensions, and UI improvements.
-Start by opening an issue that describes scope, risk, and test plan, then submit a PR with tests.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution workflow, standards, and PR checklist.

